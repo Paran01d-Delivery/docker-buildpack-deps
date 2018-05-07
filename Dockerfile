@@ -1,7 +1,7 @@
 FROM dairyd/debian:stretch
 MAINTAINER Leo Luduena<lleo@linux.com>
 
-ENV REFRESHED_AT 2017-11-03
+ENV REFRESHED_AT 2018-05-01
 
 RUN set -ex; \
 	if ! command -v gpg > /dev/null; then \
