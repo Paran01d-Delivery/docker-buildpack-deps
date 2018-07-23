@@ -1,20 +1,18 @@
 sudo: required
-
 language: ruby
-
 services:
 - docker
-
 env:
   global:
   - COMMIT=${TRAVIS_COMMIT::8}
   - REPO=dairyd/buildpack-deps
-
+  - secure: DTunc35mftzkvPgrz09f1G1ssIm9QJ/GEtBKVx6cz/IpAWjn62gQRKji1tSBeR0Z4d3bCQTtxYXuShfFXme4l/DMCi7FEePnqG8KvGr50Sr5cdzAoWkLyG9q84SKGyx8TQG7vgX2IwVBDqvDEzV+evcMj3nnwNaFqPCBnD6Fi++qfOo/MHvbAiJbxI+P8INdpagZMQBDllhp0C7wvqO6C9/sbPbd0FPqaQZOVi9x8zjbSnu3AvarPaI97LogVadTzevpx2zY+4c0nfUdyJjAWriI3M3EXlVcwDVssf0rm2czhx40rv2oiROxdTeiQ21s/BN3zjlH6K9cRFHOrogVhESqPhoORENhiw6V8JXtHDilePdcvW240xc/lUeJC/PE9hV0p3fIPCKB0BcNWeUo2C3piPrIAK+AxUaK7FkgEhQwHCUlVmaGiiflqZSG/cXCHWxAcidlmIBvsyNNjKG414cQpeMpTgzpt9uJNr0r/Vxh7RCtizaYI84I9rfIDw3GMlPlMCWPhPmb/IagqCPgaH8JxKbuLe7SnRIKpBwhrAnUOvBJ8+WscwuPvJ9w0iHDtZLTd4MZtmi0YF46eaYm6ow67RoXedcSNeLdH4PJ9kVq1Pp8NOhGI3D+cBB2DtM8cQXgC7PI6uG0sukZ0u65fWTtDOPkK6QHMoKt9OFyFjI=
+  - secure: CWhH8En7QbJ4A02zXompM3XXKhRKT7b00T30jTd7wCUv9BjMC8SnLfxi1ci1QqVrpfst/kiiWtFBRueERp7Qo0yALGedKqWyipcm1SdINjAKfJlIHhoNsuQ7XqC5xuK8UFLnpZttcegFiAMTkzEltn11bBhF1y8Q0Jitk4d1okH6xcjlX+xTfk3d7SZTAxby9v7VdRFa41Bn2rqZ6DJtmO95D1tFrd2pXEJOPlDhnEf5Ds7M3TWel8K/gzw/46Qjkxf297yY70zCrlKeGsi8XdBgyoCCgfVkg9tM1S4f1UYwJ16dFC3sNSZ1x1suXpEi9vBzCKOCVYQT1qbvgijR9NVkBKuktbwD+m7X20n9LhOXqgzVYZMX2lRCksJpSMegaiWTaESnWcbj7M3FfKOLZc6TgeWggXfkg0I/sLFUvu04j4ksrSOS8vGYF4DWdkjaHjIbhbOkaNtHkVquCyVo9mu6Cn1NIM0nPAUk+LAeTwyC6qpPyviD4AdSHDb7dp+cPab66mYa9l2VGJCRj5+6bAUz+j2ueFIBZuRWFwprFhMMKozjvT/qC+GIgCEkI0BlggmMOCpGQrRguq0Fn2RMw3/TKHHIIuLYk7gryGFHhFpxea5CPWgK2d3AfPydMLsz4QxRPDskTwxBcy6CniiwI+HIxP9AD2ugm7IR71ubzyw=
 script:
-- export TAG=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then echo "stretch-curl"; else echo $TRAVIS_BRANCH; fi`
+- export TAG=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master"
+  ]]; then echo "stretch-curl"; else echo $TRAVIS_BRANCH; fi`
 - export REPO=dairyd/buildpack-deps
 - docker build -t $REPO:$TAG -f Dockerfile .
-
 after_success:
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
 - docker push $REPO:$TAG
