@@ -2,7 +2,7 @@ FROM dairyd/debian:stretch
 
 LABEL maintainer="24.7@yungasdevops.com"
 
-ENV REFRESHED_AT 2018-12-17
+ENV REFRESHED_AT 2019-01-01
 
 RUN set -ex; \
 	if ! command -v gpg > /dev/null; then \
