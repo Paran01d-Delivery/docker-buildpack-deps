@@ -1,8 +1,8 @@
 FROM dairyd/debian:stretch
 
-LABEL maintainer="24.7@yungasdevops.com"
+LABEL maintainer="7of9@ydevops.com"
 
-ENV REFRESHED_AT 2019-01-01
+ENV REFRESHED_AT 2019-08-07
 
 RUN set -ex; \
 	if ! command -v gpg > /dev/null; then \
